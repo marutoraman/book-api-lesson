@@ -4,9 +4,9 @@ SQLAlchemyのサンプルコード
 GoogleBooksAPIを使用して本の情報を取得してDBに格納する
 
 # 準備
-.env.dev → .env にリネームして適切なDBサーバー情報を記述する
-DBサーバーにbook-dbという名称でDBを作成する
-以下を実行してテーブルを作成
+.env.dev → .env にリネームして適切なDBサーバー情報を記述する  
+DBサーバーにbook-dbという名称でDBを作成する  
+以下を実行してテーブルを作成  
 ```
 python commands/migrate.py
 ```
