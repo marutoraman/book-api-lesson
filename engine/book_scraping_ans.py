@@ -2,10 +2,7 @@
 import requests
 import re
 import time
-from common.database import SessionLocal
 from common.utility import *
-from sqlalchemy.orm import Session
-from sqlalchemy.sql.expression import desc
 
 from models.book_item import *
 
@@ -21,7 +18,6 @@ class BookScraping():
             "maxResults":max_results,
         }
         item_list = []
-        db:Session = SessionLocal()
         for page in range(page_count):
             params["startIndex"] = page * max_results
             res = requests.get(GOOGLE_BOOK_SEARCH_API,params=params)
@@ -49,9 +45,10 @@ class BookScraping():
                 except:
                     authors = ""
                 print(title)
-                db.add(BookItem(title=title, isbn=identifier, description=description, author=authors))
+                item_list.append(
+                        BookItem(title=title, isbn=identifier, description=description, author=authors, jan="")
+                    )
 
-        db.commit()
             
         return item_list
     
